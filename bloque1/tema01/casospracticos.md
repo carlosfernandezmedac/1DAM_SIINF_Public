@@ -76,7 +76,7 @@ La diferencia clave con el Caso 1: allí *sí* había pitidos (la placa "hablaba
 
 ## Caso práctico 4 — Clasificar
 
-**5.** Clasifica estos periféricos según su tipo (entrada / salida / E-S / almacenamiento / comunicación):
+Clasifica estos periféricos según su tipo (entrada / salida / E-S / almacenamiento / comunicación):
 
 `ratón` · `impresora` · `pantalla táctil` · `disco duro externo` · `tarjeta de red` · `micrófono` · `auriculares` · `USB`
 
@@ -97,10 +97,9 @@ La diferencia clave con el Caso 1: allí *sí* había pitidos (la placa "hablaba
 
 ---
 
-
 ## Caso práctico 5 — PAS
 
-**6** Explica con tus palabras qué significa el protocolo **PAS** y pon un ejemplo de cuándo se aplicaría en un entorno de oficina informático.
+Explica con tus palabras qué significa el protocolo **PAS** y pon un ejemplo de cuándo se aplicaría en un entorno de oficina informático.
 
 <details><summary>Solución</summary>
 
@@ -115,10 +114,10 @@ Ejemplo: si un compañero recibe una descarga eléctrica al manipular una fuente
 
 ---
 
-## ## Caso práctico 6 — Clasificar
+## Caso práctico 6 — Clasificar
 
 
-**10.** Busca en tu propio ordenador (o en uno del aula) el **Administrador de dispositivos** de Windows:
+Busca en tu propio ordenador (o en uno del aula) el **Administrador de dispositivos** de Windows:
 
 - Un dispositivo de entrada
 - Un dispositivo de salida
@@ -126,3 +125,14 @@ Ejemplo: si un compañero recibe una descarga eléctrica al manipular una fuente
 - Si aparece algún dispositivo con el icono de advertencia ⚠️ (controlador no instalado)
 
 <details><summary>Pista</summary>En Windows: clic derecho en el menú Inicio → Administrador de dispositivos. En Linux, abre una terminal y ejecuta <code>lsusb</code> para dispositivos USB o <code>lspci</code> para dispositivos internos.</details>
+
+---
+
+## Caso práctico 7 — Para pensar y razonar
+
+Un ordenador con arquitectura Harvard puede acceder a la vez a instrucciones y a datos. ¿Por qué es esto imposible en una arquitectura Von Neumann pura?
+
+<details><summary>Solución</summary>Porque en Von Neumann instrucciones y datos comparten la misma memoria y el mismo bus: solo se puede acceder a una cosa a la vez a través de ese bus, así que la CPU tiene que esperar su turno.</details>
+
+---
+
