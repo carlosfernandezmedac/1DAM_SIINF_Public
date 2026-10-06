@@ -87,7 +87,6 @@ Las funciones del SO son de **control** (gestionar los recursos) o de **explotac
 1. Abre el **Bloc de notas**.
 2. Abre el **Administrador de tareas** y localiza "Bloc de notas" en la pestaña de procesos. Fíjate en cuánta CPU y memoria usa.
 3. Haz clic derecho sobre él → **Finalizar tarea**. Has terminado un proceso.
-4. Abre el **Visor de eventos** (`eventvwr`) → Registros de Windows → Sistema. Ahí queda el historial de lo que le ha pasado al equipo.
 
 ---
 
