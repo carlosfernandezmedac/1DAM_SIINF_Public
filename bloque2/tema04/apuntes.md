@@ -67,6 +67,18 @@ Los dos primeros son los que más vas a ver, y se distinguen por **dónde se ins
 | Ejemplos | ESXi, Hyper-V Server, Proxmox (KVM), Xen | **VirtualBox**, VMware Workstation |
 
 > En clase usamos **VirtualBox, que es de tipo 2**: se instala como un programa más sobre el Windows del aula.
+### Un caso concreto: el VDI
+
+En un **VDI** el escritorio no está en tu equipo, sino en una VM de un servidor. Un *broker* le asigna a cada usuario una VM, y a ti solo te llega la imagen de la pantalla. Hay dos modos:
+
+| Modo | Cómo funciona |
+|---|---|
+| Persistente | Cada usuario tiene su propia VM, siempre la misma |
+| No persistente (pool) | Hay varias VM iguales, clonadas de una imagen maestra: te toca cualquiera libre y al cerrar sesión se restablece |
+
+**Pruébalo:** un escritorio remoto en el navegador.
+1. Entra en [DistroSea](https://distrosea.com/), una web gratuita para probar Linux en la nube. Elige **Ubuntu** y lánzalo: tendrás un escritorio completo en una pestaña, sin instalar nada.
+2. Crea una carpeta en el escritorio, cierra la pestaña y vuelve a entrar. ¿Sigue ahí la carpeta? Si no, es un escritorio **no persistente**.
 
 ## 4. Herramientas de virtualización
 
