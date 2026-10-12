@@ -11,7 +11,7 @@ Apuntes, ejemplos y ejercicios de la asignatura **Sistemas Informáticos** de 1�
 | Bloque | Temas | Contenido |
 |--------|-------|-----------|
 | [Bloque 1 — Fundamentos de sistemas](bloque1/README.md) | 1, 2, 3 | Componentes de un sistema informático, explotación de aplicaciones, características y tipos de sistemas operativos |
-| Bloque 2 — Instalación y administración de SO | 4, 5, 6, 7, 8 | Máquinas virtuales, instalación de SO propietarios y libres, administración y convivencia de varios SO en un equipo |
+| [Bloque 2 — Instalación y administración de SO](bloque2/README.md) | 4, 5, 6, 7, 8 | Máquinas virtuales, instalación de SO propietarios y libres, administración y convivencia de varios SO en un equipo |
 
 ### 2º Trimestre
 
