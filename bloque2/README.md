@@ -5,7 +5,7 @@
 ## Temas
 
 - [**Tema 4:** Máquinas virtuales](tema04/apuntes.md)
-- **Tema 5:** *(próximamente)*
+- [**Tema 5:** Sistemas operativos propietarios: instalación, administración y configuración](tema05/apuntes.md)
 - **Tema 6:** *(próximamente)*
 - **Tema 7:** *(próximamente)*
 - **Tema 8:** *(próximamente)*
