@@ -6,7 +6,7 @@
 
 - [**Tema 4:** Máquinas virtuales](tema04/apuntes.md)
 - [**Tema 5:** Sistemas operativos propietarios: instalación, administración y configuración](tema05/apuntes.md)
-- **Tema 6:** *(próximamente)*
+- [**Tema 6:** Sistemas operativos libres: instalación, administración y configuración (Ubuntu Server)](tema06/apuntes.md)*
 - **Tema 7:** *(próximamente)*
 - **Tema 8:** *(próximamente)*
 
