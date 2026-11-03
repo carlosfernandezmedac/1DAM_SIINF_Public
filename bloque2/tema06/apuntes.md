@@ -1,6 +1,5 @@
 # Tema 6 — Sistemas operativos libres: instalación, administración y configuración (Ubuntu Server)
 
-
 ---
 
 ## Índice
