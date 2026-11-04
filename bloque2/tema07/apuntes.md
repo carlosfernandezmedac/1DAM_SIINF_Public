@@ -11,10 +11,7 @@
 5. [Permisos](#5-permisos)
 6. [sudo y permisos elevados](#6-sudo-y-permisos-elevados)
 7. [Servicios y tareas programadas](#7-servicios-y-tareas-programadas)
-8. [Registros](#8-registros)
-9. [Almacenamiento](#9-almacenamiento)
-10. [Copias de seguridad y mantenimiento](#10-copias-de-seguridad-y-mantenimiento)
-11. [Para reconocer](#11-para-reconocer)
+
 
 ---
 
@@ -254,112 +251,6 @@ Cada línea de cron tiene **cinco campos de tiempo** y después el comando:
 
 ---
 
-## 8. Registros
-
-Un servidor **anota** lo que ocurre. Revisar esas notas sirve para saber **quién hizo qué** y detectar cosas sospechosas.
-
-| Qué quieres saber | Cómo |
-|---|---|
-| Los últimos accesos al equipo | `last -n 10` |
-| Quién está conectado ahora | `who` |
-| Los mensajes del sistema | `sudo journalctl -n 20` |
-| Los mensajes de un servicio | `sudo journalctl -u ssh` |
-| Quién usó `sudo` | `sudo journalctl \| grep sudo \| tail` |
-| Archivos de registro | La carpeta `/var/log` |
-
-> **Monitorizar** es mirar los registros **a tiempo**, no solo después de un problema.
-
-**Pruébalo:**
-1. `last -n 5`. ¿Aparece tu sesión SSH del Tema 6?
-2. `sudo journalctl --no-pager | grep sudo | tail -n 5`. ¿Ves los comandos que has ejecutado con `sudo`?
-
----
-
-## 9. Almacenamiento
-
-| Qué quieres hacer | Comando |
-|---|---|
-| Ver discos y particiones | `lsblk` |
-| Ver el espacio libre | `df -h` |
-| Ver cuánto ocupa una carpeta | `du -sh /var/log` |
-
-> **`fdisk` también modifica** las particiones. Para **mirar**, usa `lsblk`. Crear o borrar particiones destruye datos.
-
-El disco se puede **cifrar** con **LUKS**: sin la contraseña, el contenido es ilegible. Si se **pierde la clave, se pierden los datos**, así que hay que guardar una copia en un sitio seguro.
-
-**Pruébalo:** `lsblk`, `df -h` y `du -sh /var/log`. ¿Qué ocupa más: `/var/log` o `/home`?
-
----
-
-## 10. Copias de seguridad y mantenimiento
-
-### 10.1. Copias de seguridad
-
-Las copias protegen frente a fallos, errores y ataques. Dos herramientas básicas:
-
-| Herramienta | Qué hace | Ejemplo |
-|---|---|---|
-| **rsync** | Copia carpetas **solo con lo que ha cambiado**, en local o por SSH | `rsync -av origen/ destino/` |
-| **tar** | Empaqueta y comprime una carpeta en **un archivo** | `tar -czf copia.tar.gz carpeta/` |
-
-Y para ver el contenido de un `.tar.gz` sin descomprimirlo: `tar -tzf copia.tar.gz`. **rsnapshot** automatiza copias con `rsync` y se configura en `/etc/rsnapshot.conf` (solo para reconocer).
-
-| Tipo de copia | Qué guarda | Ventaja | Inconveniente |
-|---|---|---|---|
-| **Completa** | Todo | La más fácil de restaurar | Ocupa mucho y tarda |
-| **Incremental** | Lo cambiado desde la **última copia** (de cualquier tipo) | Muy rápida y pequeña | Restaurar necesita la cadena entera |
-| **Diferencial** | Lo cambiado desde la **última completa** | Restaurar necesita solo 2 copias | Crece cada día |
-
-> Una copia que **no se ha probado a restaurar**, no es una copia. Y una copia en el mismo disco que los datos, tampoco.
-
-### 10.2. Actualizar y mantener
-
-El gestor de paquetes depende de la distribución:
-
-| Distribución | Gestor | Actualizar la lista | Instalar actualizaciones |
-|---|---|---|---|
-| Ubuntu, Debian | `apt` | `sudo apt update` | `sudo apt upgrade` |
-| Fedora, Red Hat y derivados | `dnf` | `sudo dnf check-update` | `sudo dnf upgrade` |
-| SUSE | `zypper` | `sudo zypper refresh` | `sudo zypper update` |
-
-Para mantener un Ubuntu Server al día:
-
-| Paso | Comando | Para qué |
-|---|---|---|
-| 1 | `sudo apt update` | Actualiza la lista de paquetes |
-| 2 | `sudo apt upgrade` | Instala las actualizaciones |
-| 3 | `sudo apt full-upgrade` | Actualización más completa: puede instalar o quitar paquetes si hace falta |
-| 4 | `sudo apt autoremove` | Quita lo que ya no se necesita |
-| 5 | Reiniciar si lo pide | Se sabe si existe `/var/run/reboot-required` |
-| 6 | **Documentar** lo hecho | Para que quien venga después sepa qué pasó |
-
-> `apt full-upgrade` es el equivalente moderno de `apt-get dist-upgrade`, que verás en muchos manuales. Ubuntu Server normalmente ya instala **solas** las actualizaciones de seguridad (servicio `unattended-upgrades`).
-
-**Pruébalo:**
-1. `apt list --upgradable` lista lo que está pendiente de actualizar.
-2. `ls /var/run/reboot-required`. Si sale *No such file*, no hace falta reiniciar.
-3. `sudo apt autoremove` (te dirá qué va a quitar y pedirá confirmación).
-
----
-
-## 11. Para reconocer
-
-Estas herramientas existen y conviene saber **para qué sirven**. No las vamos a usar en las prácticas.
-
-| Herramienta | Para qué sirve |
-|---|---|
-| **ACL** (`getfacl`, `setfacl -m u:ana:rw archivo`) | Dar permisos a **una persona concreta** sin cambiar propietario ni grupo |
-| **auditd**, `ausearch`, `aureport` | Auditoría detallada: registra, busca y resume eventos de seguridad |
-| **LUKS**, **eCryptfs** | Cifrar un disco o una carpeta personal |
-| **Cuotas de disco** | Limitar el espacio que ocupa cada usuario |
-| **Políticas de contraseñas** (`sudo chage -l usuario`) | Longitud, complejidad y caducidad |
-| **Ansible**, **Puppet** | Configurar **muchos servidores** a la vez |
-| **TLP**, **powertop** | Ahorrar batería en **portátiles** |
-| **Unison** | Sincronizar carpetas en los dos sentidos (`rsync` solo en uno) |
-| **rsnapshot**, **Deja Dup** | Copias de seguridad automáticas |
-
----
-
 ## Resumen del tema
 
 | Tema | Lo que hay que saber hacer |
@@ -370,20 +261,5 @@ Estas herramientas existen y conviene saber **para qué sirven**. No las vamos a
 | Permisos | Leer `ls -l` y usar `chmod`, `chown` y el `2770` de una carpeta compartida |
 | sudo | Por qué se usa en vez de `root`, y que `sudoers` se edita con `visudo` |
 | Servicios y cron | `systemctl status` y escribir una línea de `crontab` |
-| Registros | `last`, `journalctl` y `/var/log` |
-| Almacenamiento | `lsblk`, `df` y qué es LUKS |
-| Copias y actualización | `rsync`, `tar`, tipos de copia, y `apt update` y `apt upgrade` |
 
----
-
-## Recursos
-
-- 🧩 [Práctica: administrar Ubuntu Server](practica-administracion.md)
-- 📝 [Casos prácticos del tema](casospracticos.md)
-- 🎬 [Vídeo: "Introducción a los comandos de Linux"](https://bit.ly/30IbFHL)
-- 🎧 [Audio: "Derechos en Ubuntu"](https://bit.ly/2AM793v)
-
----
-
-**Siguiente paso:** [Casos prácticos del Tema 7 →](casospracticos.md)
 
