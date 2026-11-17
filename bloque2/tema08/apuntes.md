@@ -1,7 +1,5 @@
 # Tema 8 — Gestión de varios sistemas operativos en un ordenador
 
-[← Volver al Bloque 2](../README.md)
-
 ---
 
 ## Índice
@@ -32,10 +30,6 @@ Un ordenador puede tener **más de un sistema operativo** (por ejemplo Windows y
 | 7 | Instalar varios sistemas operativos en un equipo |
 | 8 | Gestión avanzada de discos y archivos |
 | 9 | Para reconocer |
-
-> Los bloques **"Pruébalo"** se hacen en tu **Ubuntu Server** o en tu **Windows Server**, según se indique. En Ubuntu, **comprueba que tienes la instantánea `Ubuntu Server limpio`**.
->
-> Lo que no viene en el libro de texto pero se necesita para la práctica (`lsblk`, `mkfs`, las teclas de `fdisk`, el formato de `fstab`) va marcado con **➕**.
 
 ---
 
